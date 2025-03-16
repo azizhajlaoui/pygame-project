@@ -1,0 +1,17 @@
+# Screen settings
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 900
+
+# Card settings
+CARD_WIDTH = 100
+CARD_HEIGHT = 150
+ROWS = 4
+COLUMNS = 4
+MARGIN = 30
+SPACING = 40
+
+# Colors
+BACKGROUND_COLOR = (30, 30, 30)
+
+# Game settings
+FPS = 60
