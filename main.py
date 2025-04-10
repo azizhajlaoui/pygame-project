@@ -17,8 +17,7 @@ def load_image(name):
 
 # Load images
 card_back = load_image('card_back.png')
-card_faces = [load_image(f'card{i}.png') for i in range(1, 7)]
-
+card_faces = [(load_image(f'card{i}.png'), i) for i in range(1, 7)]
 # Duplicate and shuffle cards
 cards = card_faces * 2
 random.shuffle(cards)
@@ -32,7 +31,14 @@ def create_card_grid():
             x = MARGIN + col * (CARD_WIDTH + SPACING)
             y = MARGIN + row * (CARD_HEIGHT + SPACING)
             rect = pygame.Rect(x, y, CARD_WIDTH, CARD_HEIGHT)
-            grid_row.append({'rect': rect, 'image': cards.pop(), 'flipped': False, 'matched': False})
+            image, id = cards.pop()
+            grid_row.append({
+                'rect': rect,
+                'image': image,
+                'id': id,
+                'flipped': False,
+                'matched': False
+            })
         grid.append(grid_row)
     return grid
 
@@ -66,7 +72,7 @@ while running:
     if first_card and second_card and delay_start:
         current_time = pygame.time.get_ticks()
         if current_time - delay_start > delay:
-            if first_card['image'] == second_card['image']:
+            if first_card['id'] == second_card['id']:
                 first_card['matched'] = True
                 second_card['matched'] = True
             else:
